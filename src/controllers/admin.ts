@@ -10,7 +10,7 @@ const adminRouter: Router = Router()
 
 //update role of employee by admin -- joi validation
 adminRouter.put("/userrole", (req: Request, res: Response) =>  {
-  updateUserRole(req.body.email, req.body.role)
+  updateUserRole((req as any).body.email,(req as any).body.role)
     .then((response) => sendResponse(res, 200, true, null,response))
     .catch(err => sendResponse(res, 400, false, err.message,null))
 })
@@ -26,7 +26,7 @@ adminRouter.get("/users", (req: Request, res: Response) =>  {
 
 //block-unblock employee 
 adminRouter.put("/user-enable-disable",(req: Request, res: Response) =>  {
-  enableDisableUser(req.body.email as string, req.body.status as boolean)
+  enableDisableUser((req as any).body.email as string, (req as any).body.status as boolean)
     .then((response) => sendResponse(res, 200, true, null, response))
     .catch(err => sendResponse(res, 400, false, err.message, null))
 })
@@ -40,21 +40,22 @@ adminRouter.get("/recentusers", (req: Request, res: Response) =>  {
 })
 
 //give total users
-adminRouter.get("/totalusers", (req, res) => {
+adminRouter.get("/totalusers", (req:any, res:any) => {
+
   totalUser()
       .then(response => sendResponse(res, 200, true, null, response))
       .catch(err => sendResponse(res, 400, false, err.message, null))
 })
 
 //give active users
-adminRouter.get("/activeusers", (req, res) => {
+adminRouter.get("/activeusers", (req:any, res:any) => {
   activeUser()
       .then(response => sendResponse(res, 200, true, null, response))
       .catch(err => sendResponse(res, 400, false, err.message, null))
 })
 
 //give inactive users
-adminRouter.get("/inactiveusers", (req, res) => {
+adminRouter.get("/inactiveusers", (req:any, res:any) => {
   inactiveUser()
       .then(response => sendResponse(res, 200, true, null, response))
       .catch(err => sendResponse(res, 400, false, err.message, null))
@@ -69,7 +70,7 @@ adminRouter.get("/getallrole", (req:Request, res:Response) => {
 });
 
 adminRouter.post("/createrole", createRoleValidation, (req: Request, res: Response) => {
-  const { name, description, permissions, status } = req.body;
+  const { name, description, permissions, status } = (req as any).body;
   getRoleByName(name)
     .then((result):any => {
       if (result) {
@@ -88,7 +89,7 @@ adminRouter.post("/createrole", createRoleValidation, (req: Request, res: Respon
 });
 
 adminRouter.get("/getrolebyname", (req:Request, res:Response) => {
-  const { name } = req.body;
+  const { name } = (req as any).body;
   getRoleByName(name)
     .then((result) => {
       sendResponse(res, 200, true, null,result);
@@ -99,7 +100,7 @@ adminRouter.get("/getrolebyname", (req:Request, res:Response) => {
 });
 
 adminRouter.put("/updaterole",updateRoleValidation, (req:Request, res:Response) => {
-  const {name, description, permissions, status} = req.body;
+  const {name, description, permissions, status} = (req as any).body;
   updateRole(name, description, permissions, status)
     .then((result) => {
       sendResponse(res, 200, true, null,result);
@@ -110,7 +111,7 @@ adminRouter.put("/updaterole",updateRoleValidation, (req:Request, res:Response) 
 });
 
 adminRouter.delete("/deleterole", (req:Request, res:Response) => {
-  const { name } = req.body;
+  const { name } = (req as any).body;
   deleteRole(name)
     .then((result) => {
       sendResponse(res, 200, true, null,result);

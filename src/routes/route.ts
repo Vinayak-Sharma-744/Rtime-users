@@ -35,13 +35,13 @@ failureRedirect: 'http://192.168.1.17:4200/login',
     }
 });
 
-router.get("/homepage", (req, res) => {
+router.get("/homepage", (req:any, res:any) => {
   res.send("Homepage")
 });
 
 var restream = function (proxyReq:any, req:Request, res:Response) {
-  if (req.body) {
-    let bodyData = JSON.stringify(req.body);
+  if ((req as any).body) {
+    let bodyData = JSON.stringify((req as any).body);
 
     proxyReq.setHeader("Content-Type", "application/json");
     proxyReq.setHeader("Content-Length", Buffer.byteLength(bodyData));

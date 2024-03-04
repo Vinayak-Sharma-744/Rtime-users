@@ -9,7 +9,7 @@ export const createRoleValidation = (req: Request, res: Response, next: NextFunc
     permissions: Joi.array(),
     status: Joi.string()
   });
-  const { error } = schema.validate(req.body, { abortEarly: false });
+  const { error } = schema.validate((req as any).body, { abortEarly: false });
   if (error) {
     sendResponse(res, 400, false, error.message, null);
   } else {
@@ -24,7 +24,7 @@ export const updateRoleValidation = (req: Request, res: Response, next: NextFunc
     permissions: Joi.array(),
     status: Joi.string()
   });
-  const { error } = schema.validate(req.body, { abortEarly: false });
+  const { error } = schema.validate((req as any).body, { abortEarly: false });
   if (error) {
     sendResponse(res, 400, false, error.message, null);
   } else {

@@ -4,7 +4,7 @@ import { createUser } from "../services/userServices";
 import { sendResponse } from "../helper/helper";
 import UserType from "../library/userType";
 
-const filterData = async (req: Request, res: Response) => {
+const filterData = async (req: any, res: Response) => {
   if (req.user) {
     getRoleByName("User")
       .then((result:any) => {

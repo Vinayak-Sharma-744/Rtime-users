@@ -8,7 +8,7 @@ export const userProfileValidation = (req: Request, res: Response, next: NextFun
         time: joi.string(),
         theme: joi.boolean()
     }).unknown(false);
-const { error } = schema.validate(req.body, { abortEarly: false });
+const { error } = schema.validate((req as any).body, { abortEarly: false });
 if (error) {
     return sendResponse(res, 400, false, error.message, null);
 }else  {

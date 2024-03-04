@@ -20,7 +20,7 @@ userRouter.put("/logout", (req: Request, res: Response) =>  {
 })
 
 //update user profile (time, phone, theme) -- joi validation
-userRouter.put("/profile-update", userProfileValidation ,(req: Request, res: Response) =>  {
+userRouter.put("/profile-update", userProfileValidation ,(req: any, res: Response) =>  {
   const updatedData = {
     time: req.body.time,
     phone: req.body.phone,

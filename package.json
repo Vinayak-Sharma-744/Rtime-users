@@ -18,9 +18,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon ./dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon app.ts",
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "build": "tsc -w"
   },
   "author": "",
   "license": "ISC",

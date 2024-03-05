@@ -22,8 +22,7 @@
     "start": "nodemon ./dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon app.ts",
-    "build": "tsc --build",
-    "build": "tsc -w"
+    "build": "tsc --build"
   },
   "author": "",
   "license": "ISC",
